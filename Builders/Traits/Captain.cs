@@ -1,0 +1,26 @@
+﻿#region
+
+using Deadpan.Enums.Engine.Components.Modding;
+using HarmonyLib;
+using JetBrains.Annotations;
+using Stormriders.Builders.Interfaces;
+
+#endregion
+
+namespace Stormriders.Builders.Traits;
+
+[UsedImplicitly]
+public class Captain : ITraitBuilder
+{
+    public static string Name { get; } = AccessTools.GetOutsideCaller().DeclaringType!.Name;
+
+    public DataFileBuilder<TraitData, TraitDataBuilder> Builder()
+    {
+        return new TraitDataBuilder(Stormriders.Instance)
+            .Create(Name)
+            .SubscribeToAfterAllBuildEvent(trait =>
+            {
+                trait.keyword = Stormriders.GetKeyword(Keywords.Captain.Name);
+            });
+    }
+}
