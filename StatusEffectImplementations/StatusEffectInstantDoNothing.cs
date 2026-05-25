@@ -1,0 +1,3 @@
+﻿namespace Stormriders.StatusEffectImplementations;
+
+public class StatusEffectInstantDoNothing : StatusEffectInstant;

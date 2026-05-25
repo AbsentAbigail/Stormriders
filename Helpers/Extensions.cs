@@ -1,4 +1,5 @@
 ﻿using Deadpan.Enums.Engine.Components.Modding;
+using UnityEngine;
 using WildfrostHopeMod.VFX;
 
 namespace Stormriders.Helpers;

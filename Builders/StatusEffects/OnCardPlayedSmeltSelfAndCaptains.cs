@@ -17,7 +17,7 @@ public class OnCardPlayedSmeltSelfAndCaptains : IStatusBuilder
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
             .Create<StatusEffectApplyXOnCardPlayed>(Name)
-            .WithText($"{Stormriders.KeywordTag(Keywords.Smelt.Name)} to self all {Stormriders.KeywordTag(Captain.Name)} allies by <{{a}}>")
+            .WithText($"{Stormriders.KeywordTag(Keywords.Smelt.Name)} <{{a}}> to self and all {Stormriders.KeywordTag(Captain.Name)}s")
             .WithStackable(true)
             .WithCanBeBoosted(true)
             .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(status =>

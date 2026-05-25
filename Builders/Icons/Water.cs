@@ -28,7 +28,7 @@ public class Water : IIconBuilder
             .WithTextboxSprite()
             .WithKeywords(Keywords.Water.Name)
             .WithApplySFX(Stormriders.Instance.ImagePath("Sounds/water.mp3"))
-            .WithApplyVFX(Stormriders.Instance.ImagePath("Anim/water.gif"))
+            // .WithApplyVFX(Stormriders.Instance.ImagePath("Anim/water.gif"))
             .WithSiding(-1);
     }
 }

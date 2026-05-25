@@ -96,7 +96,7 @@ public class StatusEffectThunder : StatusEffectApplyX
     {
         foreach (var entity in targets)
         {
-            VFXHelper.VFX.TryPlayEffect("thunder", entity.transform.position, target.transform.lossyScale,
+            VFXHelper.VFX.TryPlayEffect("thunder_attack", entity.transform.position, target.transform.lossyScale,
                 GIFLoader.PlayType.damageEffect);
             yield return new Hit(target, entity, count)
             {

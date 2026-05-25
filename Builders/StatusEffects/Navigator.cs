@@ -2,9 +2,8 @@
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
-using Stormriders.Helpers;
+using Stormriders.Builders.Keywords;
 using Stormriders.StatusEffectImplementations;
-using WildfrostHopeMod.VFX;
 
 namespace Stormriders.Builders.StatusEffects;
 
@@ -17,7 +16,7 @@ public class Navigator : IStatusBuilder
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
             .Create<StatusEffectNavigator>(Name)
-            .WithText("Navigator")
+            .WithText($"{Stormriders.KeywordTag(Navigate.Name)}")
             .WithStackable(false)
             .WithCanBeBoosted(false)
             .SubscribeToAfterAllBuildEvent<StatusEffectNavigator>(status =>

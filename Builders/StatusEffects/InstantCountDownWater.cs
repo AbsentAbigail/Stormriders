@@ -2,6 +2,7 @@
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
+using Stormriders.Helpers;
 using Stormriders.StatusEffectImplementations;
 
 namespace Stormriders.Builders.StatusEffects;
@@ -21,6 +22,10 @@ public class InstantCountDownWater : IStatusBuilder
             .SubscribeToAfterAllBuildEvent<StatusEffectInstantCountDownStatus>(status =>
             {
                 status.types = ["water"];
+                status.targetConstraints =
+                [
+                    TargetConstraintHelper.HasStatus(Water.Name)
+                ];
             });
     }
 }

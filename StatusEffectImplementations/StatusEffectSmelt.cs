@@ -1,4 +1,7 @@
 ﻿using System.Collections;
+using Stormriders.Helpers;
+using WildfrostHopeMod.SFX;
+using WildfrostHopeMod.VFX;
 
 namespace Stormriders.StatusEffectImplementations;
 
@@ -8,6 +11,9 @@ public class StatusEffectSmelt : StatusEffectInstant
     
     public override IEnumerator Process()
     {
+        VFXHelper.VFX.TryPlayEffect("Smelt_Animation", target.transform.position, target.transform.lossyScale,
+            playAs: GIFLoader.PlayType.damageEffect);
+        VFXHelper.SFX.TryPlaySound("smelt");
         var damage = target.damage.current;
         if (damage > 0)
         {

@@ -27,7 +27,7 @@ public class InstantApplyFrostOrWaterIfCaptainInRow : IStatusBuilder
                 status.otherEffectToApply = Stormriders.GetStatus("Frost");
                 status.applierConditions =
                 [
-                    TargetConstraintHelper.General<TargetConstraintAllyInRowMatchesConstraint>("Ally in row has Captain",
+                    TargetConstraintHelper.General<TargetConstraintAllyMatchesConstraint>("Ally in row has Captain",
                         constraint =>
                         {
                             constraint.constraints =

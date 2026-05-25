@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Helpers;
 using Stormriders.StatusEffectImplementations;
-using WildfrostHopeMod.VFX;
 
 namespace Stormriders.Builders.StatusEffects;
 
@@ -22,6 +21,7 @@ public class Smelt : IStatusBuilder
             .WithCanBeBoosted(true)
             .SubscribeToAfterAllBuildEvent<StatusEffectSmelt>(status =>
             {
+                status.type = "smelt";
                 status.effectToApply = Stormriders.GetStatus(Thunder.Name);
                 status.targetConstraints =
                 [

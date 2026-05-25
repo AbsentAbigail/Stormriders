@@ -17,8 +17,8 @@ public class WhenDestroyedAddCaptainToRandomAlly : IStatusBuilder
         return new StatusEffectDataBuilder(Stormriders.Instance)
             .Create<StatusEffectApplyXWhenDestroyed>(Name)
             .WithText($"When destroyed, apply {Stormriders.KeywordTag("captain")} to a random ally")
-            .WithStackable(true)
-            .WithCanBeBoosted(true)
+            .WithStackable(false)
+            .WithCanBeBoosted(false)
             .SubscribeToAfterAllBuildEvent<StatusEffectApplyXWhenDestroyed>(status =>
             {
                 status.targetMustBeAlive = false;
