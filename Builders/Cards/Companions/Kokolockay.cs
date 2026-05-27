@@ -58,13 +58,14 @@ public class Kokolockay : ICardBuilder
 internal class KokolockayCardImage : ScriptableCardImage
 {
     public Image Image => GetComponent<Image>();
+    private Sprite sprite = Stormriders.GetSprite("Kokolockay");
 
     // gets called when the card is created (e.g. Leaders having one consistent avatar)
     public override void AssignEvent()
     {
         // we use the CardData's main sprite for a backup here
         // otherwise it won't have any sprite
-        Image.sprite = entity.data.mainSprite;
+        Image.sprite = sprite;
         // Move Kokolockay down to fit the card frame better
         transform.localPosition += new Vector3(0, -1f, 0);
     }
@@ -72,11 +73,7 @@ internal class KokolockayCardImage : ScriptableCardImage
     public override void UpdateEvent()
     {
         var eatEffect = (StatusEffectWhenHitByWaterCount)entity.statusEffects.FirstOrDefault(status => status is StatusEffectWhenHitByWaterCount);
-        if (eatEffect == null)
-        {
-            return;
-        }
-        var scale = 1 + eatEffect.eatCount * 0.1f;
+        var scale = 1 + (eatEffect?.eatCount ?? 0) * 0.1f;
 
         transform.localScale = new Vector3(scale, scale, 1f);
     }

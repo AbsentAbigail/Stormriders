@@ -471,6 +471,7 @@
     <Compile Include="Builders\StatusEffects\InstantDoubleThunder.cs" />
     <Compile Include="Builders\StatusEffects\InstantDoubleWater.cs" />
     <Compile Include="Builders\StatusEffects\InstantIncreaseHealthToSelfAndWaterRandomEnemy.cs" />
+    <Compile Include="Builders\StatusEffects\InstantKill.cs" />
     <Compile Include="Builders\StatusEffects\InstantReduceOwnCounterAndApplyWaterToEnemies.cs" />
     <Compile Include="Builders\StatusEffects\InstantReduceWaterBy4.cs" />
     <Compile Include="Builders\StatusEffects\InstantRemoveCaptain.cs" />
@@ -529,7 +530,7 @@
     <Compile Include="Builders\StatusEffects\WhenDestroyedSmeltAllCaptainAllies.cs" />
     <Compile Include="Builders\StatusEffects\WhenEnemyGainsWaterCountDownRedrawBell.cs" />
     <Compile Include="Builders\StatusEffects\WhenHitApplyWaterToAttacker.cs" />
-    <Compile Include="Builders\StatusEffects\WhenAnyWaterCountsDownTrigger.cs" />
+    <Compile Include="Builders\StatusEffects\WhenAnyWaterCountsDownCountDownOwncounter.cs" />
     <Compile Include="Builders\StatusEffects\WhenHitByWaterEnemyAbsorbAttacker.cs" />
     <Compile Include="Builders\StatusEffects\WhenHitGainThunder.cs" />
     <Compile Include="Builders\StatusEffects\WhenHitSmeltAllyBehind.cs" />

@@ -24,7 +24,7 @@ public class ThunderRum : ICardBuilder
                 Stormriders.GetSprite("Thunder_rum"),
                 Stormriders.GetSprite("Thunder_rum_bg"))
             .WithValue(50)
-            .CanPlayOnHand(false)
+            .CanPlayOnHand()
             .SubscribeToAfterAllBuildEvent(card =>
             {
                 card.attackEffects =

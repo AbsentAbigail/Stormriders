@@ -32,6 +32,10 @@ public class Grinkaw : ICardBuilder
                 [
                     Stormriders.SStack(InstantApplyFrostOrWaterIfCaptainInRow.Name),
                 ];
+                card.traits =
+                [
+                    Stormriders.TStack("Longshot")
+                ];
                 card.AddToPets();
             });
     }

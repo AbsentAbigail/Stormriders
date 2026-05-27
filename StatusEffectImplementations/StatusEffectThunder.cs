@@ -10,6 +10,19 @@ namespace Stormriders.StatusEffectImplementations;
 
 public class StatusEffectThunder : StatusEffectApplyX
 {
+    private bool _cancel;
+    private bool _hadAttack;
+
+    public override object GetMidBattleData()
+    {
+        return _hadAttack;
+    }
+
+    public override void RestoreMidBattleData(object data)
+    {
+        _hadAttack = (bool)data;
+    }
+
     public override void Init()
     {
         OnCardPlayed += CardPlayed;
@@ -19,6 +32,10 @@ public class StatusEffectThunder : StatusEffectApplyX
     public void OnDestroy()
     {
         Events.OnEntityDisplayUpdated -= PreventAttack;
+        if (_hadAttack)
+        {
+            target.data.hasAttack = true;
+        }
     }
 
     private void PreventAttack(Entity entity)
@@ -30,6 +47,7 @@ public class StatusEffectThunder : StatusEffectApplyX
 
         if (entity.data.hasAttack)
         {
+            _hadAttack = true;
             entity.data.hasAttack = false;
         }
 
@@ -78,10 +96,18 @@ public class StatusEffectThunder : StatusEffectApplyX
         {
             yield break;
         }
+
+        _cancel = false;
         for (var i = 0; i < (waterEffect != null ? waterEffect.count : 0); i++)
         {
-            yield return new WaitForSeconds(0.1f);
-            yield return Run([hit.target], 0.1f);
+            ActionQueue.Stack(new ActionSequence(Run([hit.target], 0.2f))
+            {
+                note = name + " - " + i
+            });
+            if (_cancel)
+            {
+                break;
+            }
         }
 
         var amount = 1;
@@ -94,16 +120,30 @@ public class StatusEffectThunder : StatusEffectApplyX
 
     private IEnumerator Run(List<Entity> targets, float delay)
     {
+        var hit = false;
         foreach (var entity in targets)
         {
+            if (entity.hp.current < 0)
+            {
+                continue;
+            }
+            
             VFXHelper.VFX.TryPlayEffect("thunder_attack", entity.transform.position, target.transform.lossyScale,
                 GIFLoader.PlayType.damageEffect);
             yield return new Hit(target, entity, count)
             {
                 canRetaliate = false,
                 countsAsHit = true,
+                trigger = new Trigger(target, target, "thunder", [.. targets]),
                 damageType = type
             }.Process();
+            hit = true;
+        }
+
+        if (!hit)
+        {
+            _cancel = true;
+            yield break;
         }
         VFXHelper.SFX.TryPlaySound("thunder_attack");
         yield return new WaitForSeconds(delay);

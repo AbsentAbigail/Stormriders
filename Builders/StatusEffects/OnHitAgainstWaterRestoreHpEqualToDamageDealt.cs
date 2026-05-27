@@ -27,6 +27,7 @@ public class OnHitAgainstWaterRestoreHpEqualToDamageDealt : IStatusBuilder
                 [
                     TargetConstraintHelper.HasStatus("Water")
                 ];
+                status.applyEqualAmount = true;
             });
     }
 }

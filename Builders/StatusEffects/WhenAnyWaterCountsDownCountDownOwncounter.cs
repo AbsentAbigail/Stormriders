@@ -7,7 +7,7 @@ using Stormriders.StatusEffectImplementations;
 namespace Stormriders.Builders.StatusEffects;
 
 [UsedImplicitly]
-public class WhenAnyWaterCountsDownTrigger : IStatusBuilder
+public class WhenAnyWaterCountsDownCountDownOwncounter : IStatusBuilder
 {
     public static string Name { get; } = AccessTools.GetOutsideCaller().DeclaringType!.Name;
 
@@ -15,17 +15,14 @@ public class WhenAnyWaterCountsDownTrigger : IStatusBuilder
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
             .Create<StatusEffectApplyXWhenStatusCountsDown>(Name)
-            .WithText($"Trigger whenever any {Stormriders.KeywordTag("water")} counts down")
-            .WithStackable(false)
-            .WithCanBeBoosted(false)
+            .WithText($"Count down <keyword=counter> by <{{a}}> whenever any {Stormriders.KeywordTag("water")} counts down")
+            .WithStackable(true)
+            .WithCanBeBoosted(true)
             .SubscribeToAfterAllBuildEvent<StatusEffectApplyXWhenStatusCountsDown>(status =>
             {
-                status.effectToApply = Stormriders.GetStatus("Trigger (High Prio)");
+                status.effectToApply = Stormriders.GetStatus("Reduce Counter");
                 status.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
-                status.CountDownFlags = null;
-
-                status.isReaction = true;
-                status.descColorHex = "F99C61";
+                status.CountDownFlags = StatusEffectApplyX.ApplyToFlags.Enemies;
             });
     }
 }

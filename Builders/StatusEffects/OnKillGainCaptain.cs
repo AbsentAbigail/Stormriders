@@ -15,11 +15,11 @@ public class OnKillGainCaptain : IStatusBuilder
     public DataFileBuilder<StatusEffectData, StatusEffectDataBuilder> Builder()
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
-            .Create<StatusEffectApplyXOnCardPlayed>(Name)
+            .Create<StatusEffectApplyXOnKill>(Name)
             .WithText($"On kill, gain {Stormriders.KeywordTag("captain")}")
             .WithStackable(false)
             .WithCanBeBoosted(false)
-            .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(status =>
+            .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnKill>(status =>
             {
                 status.effectToApply = Stormriders.GetStatus(TemporaryCaptain.Name);
                 status.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;

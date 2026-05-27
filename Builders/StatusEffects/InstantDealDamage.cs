@@ -19,6 +19,8 @@ public class InstantDealDamage : IStatusBuilder
             .WithCanBeBoosted(false)
             .SubscribeToAfterAllBuildEvent<StatusEffectApplyXInstant>(status =>
             {
+                status.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
+                
                 status.doesDamage = true;
                 status.dealDamage = true;
                 status.countsAsHit = true;

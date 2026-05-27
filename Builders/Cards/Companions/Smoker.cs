@@ -21,7 +21,7 @@ public class Smoker : ICardBuilder
                 "TargetModeBasic",
                 "Blood Profile Husk",
                 "SwayAnimationProfile")
-            .SetStats(6, null, 8)
+            .SetStats(6, null, 7)
             .SetSprites(
                 Stormriders.GetSprite("Smoker"),
                 Stormriders.GetSprite("Smoker_BG"))
@@ -31,7 +31,7 @@ public class Smoker : ICardBuilder
                 card.startWithEffects =
                 [
                     Stormriders.SStack(OnCardPlayedSmeltAlliesInRow.Name),
-                    Stormriders.SStack(WhenAnyWaterCountsDownTrigger.Name),
+                    Stormriders.SStack(WhenAnyWaterCountsDownCountDownOwncounter.Name),
                 ];
                 card.greetMessages =
                 [

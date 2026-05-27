@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Stormriders.Helpers;
-using WildfrostHopeMod.SFX;
 using WildfrostHopeMod.VFX;
 
 namespace Stormriders.StatusEffectImplementations;
@@ -19,7 +18,6 @@ public class StatusEffectSmelt : StatusEffectInstant
         {
             target.damage.current = 0;
             target.damage.max = 0;
-            target.data.hasAttack = false;
             target.display.RemoveStatusIcon("damage", "damage");
             yield return StatusEffectSystem.Apply(target, applier, effectToApply, damage);
             yield return Remove();

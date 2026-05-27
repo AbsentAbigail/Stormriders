@@ -18,6 +18,7 @@ public class StatusEffectNavigator : StatusEffectInstant
                 continue;
             }
             yield return RemoveEffect(data);
+            yield return target.UpdateTraits();
             yield return ApplyEffect(i+1);
             yield return target.UpdateTraits();
             target.display.promptUpdateDescription = true;

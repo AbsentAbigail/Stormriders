@@ -6,8 +6,8 @@ using System.Reflection;
 using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
+using Stormriders.Builders.Cards.Companions;
 using Stormriders.Builders.Interfaces;
-using Stormriders.Builders.StatusEffects;
 using Stormriders.Builders.Tribes;
 using Stormriders.GameSystems;
 using Stormriders.Helpers;
@@ -15,11 +15,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.AddressableAssets.ResourceLocators;
-using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.UI;
-using UnityEngine.XR;
 using WildfrostHopeMod.SFX;
 using WildfrostHopeMod.Utils;
 using WildfrostHopeMod.VFX;
@@ -40,7 +38,7 @@ public class Stormriders : WildfrostMod
 
     public override string GUID => "pelli.wildfrost.stormriders";
 
-    public override string[] Depends => [];
+    public override string[] Depends => ["hope.wildfrost.vfx"];
 
     public override string Title => "Stormriders";
 
@@ -115,11 +113,13 @@ public class Stormriders : WildfrostMod
     private static void LoadEvents()
     {
         Events.OnSceneLoaded += SceneLoaded;
+        Events.OnEntityCreated += FixLeaderImage;
     }
 
     private static void UnloadEvents()
     {
         Events.OnSceneLoaded -= SceneLoaded;
+        Events.OnEntityCreated -= FixLeaderImage;
     }
 
     private static void SceneLoaded(Scene scene)
@@ -128,6 +128,14 @@ public class Stormriders : WildfrostMod
             return;
 
         GameObject.Find("Systems")?.AddComponent<ChargeRedrawBellSystem>();
+    }
+    
+    private static void FixLeaderImage(Entity entity)
+    {
+        if (entity.display is Card { hasScriptableImage: false } card) //These cards should use the static image
+        {
+            card.mainImage.gameObject.SetActive(true);               //And this line turns them on
+        }
     }
     
     private void CreateModAssets()
@@ -173,7 +181,7 @@ public class Stormriders : WildfrostMod
                 && typeof(ICardBuilder).IsAssignableFrom(t))
             .Select(type => ((ICardBuilder)Activator.CreateInstance(type)).Builder()).Cast<CardDataBuilder>().ToList();
         _assets.AddRange(companions);
-        CompanionNames = GetNamesFromBuilders(companions);
+        CompanionNames = GetNamesFromBuilders(companions.Where(builder => builder._data.name != PrefixGuid(Cheashir.Name) && builder._data.name != PrefixGuid(Grinkaw.Name)).ToList());
         
         var clunkers = Assembly.GetExecutingAssembly().GetTypes()
             .Where(t =>

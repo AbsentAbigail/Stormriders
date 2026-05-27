@@ -22,7 +22,7 @@ public class PotionOfScylla : ICardBuilder
             .SetDamage(0)
             .SetSprites(
                 Stormriders.GetSprite("Potion_of_Scylla"),
-                Stormriders.GetSprite("Scylla_BG"))
+                Stormriders.GetSprite("Scylla_Bg"))
             .WithValue(50)
             .CanPlayOnHand(false)
             .SubscribeToAfterAllBuildEvent(card =>
