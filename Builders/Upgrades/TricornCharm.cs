@@ -22,7 +22,7 @@ public class TricornCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-_Tricorn"))
+            .WithImage(Stormriders.GetSprite("Square_Tricorn"))
             .WithTitle("Tricorn Charm")
             .WithText($"Gain {Stormriders.KeywordTag("captain")}")
             .SubscribeToAfterAllBuildEvent(charm =>

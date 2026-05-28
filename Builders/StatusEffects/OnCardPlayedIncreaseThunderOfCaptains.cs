@@ -4,7 +4,6 @@ using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Builders.Keywords;
 using Stormriders.Helpers;
-using Stormriders.Scriptables.ScriptableAmounts;
 
 namespace Stormriders.Builders.StatusEffects;
 
@@ -26,7 +25,8 @@ public class OnCardPlayedIncreaseThunderOfCaptains : IStatusBuilder
                 status.applyToFlags = StatusEffectApplyX.ApplyToFlags.Allies;
                 status.applyConstraints =
                 [
-                    TargetConstraintHelper.HasTrait(Traits.Captain.Name)
+                    TargetConstraintHelper.HasTrait(Traits.Captain.Name),
+                    TargetConstraintHelper.HasStatus(Thunder.Name)
                 ];
             });
     }

@@ -21,7 +21,7 @@ public class TrebuchetCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-Trebuchet"))
+            .WithImage(Stormriders.GetSprite("Square_Trebuchet"))
             .WithTitle("Trebuchet Charm")
             .WithText($"Gain <keyword=longshot> and Apply <3>{Stormriders.KeywordTag("water")}")
             .SubscribeToAfterAllBuildEvent(charm =>

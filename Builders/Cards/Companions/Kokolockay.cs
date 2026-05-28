@@ -58,14 +58,13 @@ public class Kokolockay : ICardBuilder
 internal class KokolockayCardImage : ScriptableCardImage
 {
     public Image Image => GetComponent<Image>();
-    private Sprite sprite = Stormriders.GetSprite("Kokolockay");
 
     // gets called when the card is created (e.g. Leaders having one consistent avatar)
     public override void AssignEvent()
     {
         // we use the CardData's main sprite for a backup here
         // otherwise it won't have any sprite
-        Image.sprite = sprite;
+        Image.sprite = entity.data.mainSprite;
         // Move Kokolockay down to fit the card frame better
         transform.localPosition += new Vector3(0, -1f, 0);
     }

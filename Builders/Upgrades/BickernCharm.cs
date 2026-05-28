@@ -21,7 +21,7 @@ public class BickernCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-_Bickern"))
+            .WithImage(Stormriders.GetSprite("Square_Bickern"))
             .WithTitle("Bickern Charm")
             .WithText($"Gain \"{Stormriders.KeywordTag("smelt")} <1> to self and all {Stormriders.KeywordTag("captain")}s\"")
             .SubscribeToAfterAllBuildEvent(charm =>

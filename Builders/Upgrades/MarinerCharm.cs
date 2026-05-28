@@ -21,7 +21,7 @@ public class MarinerCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-_Mariner"))
+            .WithImage(Stormriders.GetSprite("Square_Mariner"))
             .WithTitle("Mariner Charm")
             .WithText($"Apply <1>{Stormriders.KeywordTag("water")} for each {Stormriders.KeywordTag("captain")} in play")
             .SubscribeToAfterAllBuildEvent(charm =>

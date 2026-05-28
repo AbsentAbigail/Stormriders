@@ -22,7 +22,7 @@ public class DawnCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-_Dawn"))
+            .WithImage(Stormriders.GetSprite("Square_Dawn"))
             .WithTitle("Dawn Charm")
             .WithText($"Gain \"When deployed, removed <keyword=consume> from cards in hand\"")
             .SubscribeToAfterAllBuildEvent(charm =>

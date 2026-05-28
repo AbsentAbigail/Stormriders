@@ -23,7 +23,7 @@ public class SwashbucklerCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-_Swashbuckler"))
+            .WithImage(Stormriders.GetSprite("Square_Swashbuckler"))
             .WithTitle("Swashbuckler Charm")
             .WithText($"Remove {Stormriders.KeywordTag("captain")}, then increase <keyword=attack> or {Stormriders.KeywordTag("thunder")} by <3>")
             .SubscribeToAfterAllBuildEvent(charm =>

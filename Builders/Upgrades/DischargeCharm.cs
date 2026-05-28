@@ -23,7 +23,7 @@ public class DischargeCharm : IUpgradeBuilder
         return new CardUpgradeDataBuilder(Stormriders.Instance)
             .Create(Name)
             .WithType(CardUpgradeData.Type.Charm)
-            .WithImage(Stormriders.GetSprite("Charm_-_Discharge"))
+            .WithImage(Stormriders.GetSprite("Square_Discharge"))
             .WithTitle("Discharge Charm")
             .WithText($"Reduce <keyword=attack> by <2>, then convert <keyword=attack> to {Stormriders.KeywordTag("thunder")}")
             .SubscribeToAfterAllBuildEvent(charm =>

@@ -2,9 +2,6 @@
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
-using Stormriders.Builders.Keywords;
-using Stormriders.Helpers;
-using Stormriders.Scriptables.ScriptableAmounts;
 
 namespace Stormriders.Builders.StatusEffects;
 
@@ -19,7 +16,7 @@ public class OnCardPlayedBoostSelf : IStatusBuilder
             .Create<StatusEffectApplyXOnCardPlayed>(Name)
             .WithText($"Increase own effects by {{a}}")
             .WithStackable(true)
-            .WithCanBeBoosted(true)
+            .WithCanBeBoosted(false)
             .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(status =>
             {
                 status.effectToApply = Stormriders.GetStatus("Increase Effects");
