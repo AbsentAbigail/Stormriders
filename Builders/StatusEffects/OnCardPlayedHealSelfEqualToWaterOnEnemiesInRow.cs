@@ -1,10 +1,13 @@
-﻿using Deadpan.Enums.Engine.Components.Modding;
+﻿#region
+
+using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
-using Stormriders.Builders.Keywords;
 using Stormriders.Helpers;
 using Stormriders.Scriptables.ScriptableAmounts;
+
+#endregion
 
 namespace Stormriders.Builders.StatusEffects;
 

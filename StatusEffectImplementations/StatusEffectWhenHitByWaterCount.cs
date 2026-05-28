@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Stormriders.Helpers;
-using UnityEngine;
-using WildfrostHopeMod.VFX;
+﻿#region
+
+using System.Collections;
+
+#endregion
 
 namespace Stormriders.StatusEffectImplementations;
 

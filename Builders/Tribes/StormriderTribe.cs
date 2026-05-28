@@ -1,13 +1,10 @@
 ﻿#region
 
-using System;
 using System.Linq;
-using System.Reflection;
 using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Cards.Clunkers;
-using Stormriders.Builders.Cards.Companions;
 using Stormriders.Builders.Cards.Items;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Helpers;

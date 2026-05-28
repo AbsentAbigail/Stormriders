@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿#region
+
+using System.Collections;
+
+#endregion
 
 namespace Stormriders.StatusEffectImplementations;
 

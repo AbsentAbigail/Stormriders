@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿#region
+
+using System.Collections;
 using System.Linq;
 using Stormriders.Helpers;
+
+#endregion
 
 namespace Stormriders.StatusEffectImplementations;
 

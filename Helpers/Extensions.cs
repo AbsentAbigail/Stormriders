@@ -1,6 +1,8 @@
-﻿using Deadpan.Enums.Engine.Components.Modding;
-using UnityEngine;
-using WildfrostHopeMod.VFX;
+﻿#region
+
+using Deadpan.Enums.Engine.Components.Modding;
+
+#endregion
 
 namespace Stormriders.Helpers;
 

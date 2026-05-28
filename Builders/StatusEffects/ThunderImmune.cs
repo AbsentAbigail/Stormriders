@@ -5,7 +5,6 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.StatusEffectImplementations;
-using WildfrostHopeMod.VFX;
 
 #endregion
 

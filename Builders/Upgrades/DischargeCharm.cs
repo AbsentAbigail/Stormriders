@@ -4,8 +4,6 @@ using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
-using Stormriders.Builders.StatusEffects;
-using Stormriders.Builders.Traits;
 using Stormriders.Helpers;
 using Stormriders.Scriptables.CardScripts;
 

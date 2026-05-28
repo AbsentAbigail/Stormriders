@@ -1,9 +1,5 @@
 ﻿#region
 
-using System;
-using System.Collections;
-using DeadExtensions;
-
 #endregion
 
 namespace Stormriders.StatusEffectImplementations;

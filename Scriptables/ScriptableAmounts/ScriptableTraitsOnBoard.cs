@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿#region
+
+using System.Linq;
 using UnityEngine;
+
+#endregion
 
 namespace Stormriders.Scriptables.ScriptableAmounts;
 

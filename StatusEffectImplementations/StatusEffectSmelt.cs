@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿#region
+
+using System.Collections;
 using Stormriders.Helpers;
 using WildfrostHopeMod.VFX;
+
+#endregion
 
 namespace Stormriders.StatusEffectImplementations;
 

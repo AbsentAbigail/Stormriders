@@ -1,7 +1,11 @@
-﻿using System.Collections;
+﻿#region
+
+using System.Collections;
 using System.Linq;
 using HarmonyLib;
 using JetBrains.Annotations;
+
+#endregion
 
 namespace Stormriders.Patches;
 

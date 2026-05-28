@@ -1,4 +1,8 @@
-﻿using Stormriders.Builders.StatusEffects;
+﻿#region
+
+using Stormriders.Builders.StatusEffects;
+
+#endregion
 
 namespace Stormriders.Scriptables.CardScripts;
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,6 +25,8 @@ using WildfrostHopeMod.Utils;
 using WildfrostHopeMod.VFX;
 using Extensions = Deadpan.Enums.Engine.Components.Modding.Extensions;
 using Object = UnityEngine.Object;
+
+#endregion
 
 namespace Stormriders;
 

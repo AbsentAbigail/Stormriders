@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿#region
+
+using System.Linq;
 using Stormriders.Builders.Traits;
+
+#endregion
 
 namespace Stormriders.Scriptables.CardScripts;
 

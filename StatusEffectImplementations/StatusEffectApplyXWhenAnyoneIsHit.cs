@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿#region
+
+using System.Collections;
 using System.Linq;
-using UnityEngine;
+
+#endregion
 
 namespace Stormriders.StatusEffectImplementations;
 

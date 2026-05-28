@@ -1,10 +1,14 @@
-﻿using Deadpan.Enums.Engine.Components.Modding;
+﻿#region
+
+using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
-using Stormriders.Builders.Traits;
+using Stormriders.Builders.Keywords;
 using Stormriders.Helpers;
 using Stormriders.StatusEffectImplementations;
+
+#endregion
 
 namespace Stormriders.Builders.StatusEffects;
 
@@ -17,15 +21,15 @@ public class InstantRemoveCaptain : IStatusBuilder
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
             .Create<StatusEffectInstantRemoveTrait>(Name)
-            .WithText($"Remove {Stormriders.KeywordTag(Keywords.Captain.Name)}")
+            .WithText($"Remove {Stormriders.KeywordTag(Captain.Name)}")
             .WithStackable(false)
             .WithCanBeBoosted(false)
             .SubscribeToAfterAllBuildEvent<StatusEffectInstantRemoveTrait>(status =>
             {
-                status.trait = Stormriders.GetTrait(Captain.Name);
+                status.trait = Stormriders.GetTrait(Traits.Captain.Name);
                 status.targetConstraints =
                 [
-                    TargetConstraintHelper.HasTrait(Captain.Name)
+                    TargetConstraintHelper.HasTrait(Traits.Captain.Name)
                 ];
             });
     }

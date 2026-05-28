@@ -1,6 +1,9 @@
-﻿using HarmonyLib;
+﻿#region
+
+using HarmonyLib;
 using JetBrains.Annotations;
-using Stormriders.Helpers;
+
+#endregion
 
 namespace Stormriders.Patches;
 
