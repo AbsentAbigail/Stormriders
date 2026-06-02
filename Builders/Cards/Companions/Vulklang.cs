@@ -1,13 +1,9 @@
-﻿#region
-
-using Deadpan.Enums.Engine.Components.Modding;
+﻿using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Builders.StatusEffects;
 using Stormriders.Helpers;
-
-#endregion
 
 namespace Stormriders.Builders.Cards.Companions;
 
@@ -34,7 +30,7 @@ public class Vulklang : ICardBuilder
                 ];
                 card.greetMessages =
                 [
-                    "These baddies think they've know storms? Let's show them a real storm.",
+                    "These baddies think they know storms? Let's show them a real storm.",
                     "The work never ends, young'in. I'm in if you need me.",
                     "Your weapons are weak. You'll never make it without a proper smith.",
                 ];

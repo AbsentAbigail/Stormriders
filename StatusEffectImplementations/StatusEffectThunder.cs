@@ -1,19 +1,13 @@
-﻿#region
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq;
 using Stormriders.Helpers;
 using UnityEngine;
 using WildfrostHopeMod.VFX;
 
-#endregion
-
 namespace Stormriders.StatusEffectImplementations;
 
 public class StatusEffectThunder : StatusEffectApplyX
 {
-    private bool _cancel;
     private bool _hadAttack;
 
     public override object GetMidBattleData()
@@ -82,7 +76,7 @@ public class StatusEffectThunder : StatusEffectApplyX
             yield return NoTargetTextSystem.Run(target, NoTargetType.NoTargetToAttack);
             yield break;
         }
-        yield return targets.Select(t => Check(new Hit(entity, t))).GetEnumerator();
+        yield return targets.Select(hitTarget => Check(hitTarget)).GetEnumerator();
     }
 
     public override bool RunCardPlayedEvent(Entity entity, Entity[] targets)
@@ -90,65 +84,58 @@ public class StatusEffectThunder : StatusEffectApplyX
         return target.enabled && entity == target && (!targetMustBeAlive || target.alive);
     }
 
-    private IEnumerator Check(Hit hit)
+    private IEnumerator Check(Entity hitTarget)
     {
-        yield return Run([hit.target], 0.2f);
-        
-        var waterEffect = hit.target.FindStatus("water");
-        if (waterEffect is null)
+        var water = hitTarget.FindStatus("water")?.count ?? 0;
+            
+        ActionQueue.Insert(0, new ActionSequence(Run(hitTarget, water, 0.2f))
         {
-            yield break;
-        }
-
-        _cancel = false;
-        for (var i = 0; i < (waterEffect != null ? waterEffect.count : 0); i++)
-        {
-            ActionQueue.Stack(new ActionSequence(Run([hit.target], 0.2f))
-            {
-                note = name + " - " + i
-            });
-            if (_cancel)
-            {
-                break;
-            }
-        }
-
-        var amount = 1;
-        Events.InvokeStatusEffectCountDown(waterEffect, ref amount);
-        yield return waterEffect.CountDown(hit.target, amount);
-        
-        hit.target.display.promptUpdateDescription = true;
-        hit.target.PromptUpdate();
+            note = name + " - " + water
+        });
+        yield break;
     }
 
-    private IEnumerator Run(List<Entity> targets, float delay)
+    private IEnumerator Run(Entity hitTarget, int water, float delay)
     {
-        var hit = false;
-        foreach (var entity in targets)
+        if (hitTarget.hp.current < 0)
         {
-            if (entity.hp.current < 0)
-            {
-                continue;
-            }
-            
-            VFXHelper.VFX.TryPlayEffect("thunder_attack", entity.transform.position, target.transform.lossyScale,
-                GIFLoader.PlayType.damageEffect);
-            yield return new Hit(target, entity, count)
-            {
-                canRetaliate = false,
-                countsAsHit = true,
-                trigger = new Trigger(target, target, "thunder", [.. targets]),
-                damageType = type
-            }.Process();
-            hit = true;
-        }
-
-        if (!hit)
-        {
-            _cancel = true;
             yield break;
         }
+
+        VFXHelper.VFX.TryPlayEffect("thunder_attack", hitTarget.transform.position, target.transform.lossyScale,
+            GIFLoader.PlayType.damageEffect);
+        yield return new Hit(target, hitTarget, count)
+        {
+            canRetaliate = false,
+            countsAsHit = true,
+            trigger = new Trigger(target, target, "thunder", [hitTarget]),
+            damageType = type
+        }.Process();
+        
         VFXHelper.SFX.TryPlaySound("thunder_attack");
         yield return new WaitForSeconds(delay);
+
+        if (water-- > 0)
+        {
+            ActionQueue.Insert(0, new ActionSequence(Run(hitTarget, --water, 0.2f))
+            {
+                note = name + " - " + water
+            });
+        }
+        else
+        {
+            var waterEffect = hitTarget.FindStatus("water");
+            if (waterEffect is null)
+            {
+                yield break;
+            }
+            
+            var amount = 1;
+            Events.InvokeStatusEffectCountDown(waterEffect, ref amount);
+            yield return waterEffect.CountDown(hitTarget, amount);
+        
+            hitTarget.display.promptUpdateDescription = true;
+            hitTarget.PromptUpdate();
+        }
     }
 }

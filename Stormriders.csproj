@@ -489,6 +489,7 @@
     <Compile Include="Builders\StatusEffects\OnCardPlayedIncreaseLowestHealthAllyHealthEqualToWater.cs" />
     <Compile Include="Builders\StatusEffects\OnCardPlayedLoseThunder.cs" />
     <Compile Include="Builders\StatusEffects\OnCardPlayedNavigateAllyAhead.cs" />
+    <Compile Include="Builders\StatusEffects\OnCardPlayedReduceOwnEffects.cs" />
     <Compile Include="Builders\StatusEffects\OnCardPlayedSmeltAlliedCaptains.cs" />
     <Compile Include="Builders\StatusEffects\OnKillGainCaptain.cs" />
     <Compile Include="Builders\StatusEffects\OnKillReduceCounterAndApplyWaterToEnemiesInRow.cs" />
@@ -560,6 +561,7 @@
     <Compile Include="Helpers\VFXHelper.cs" />
     <Compile Include="Patches\ActionProcessTriggerPatches.cs" />
     <Compile Include="Patches\PetHutFlagSetterPatches.cs" />
+    <Compile Include="Patches\TargetConstraintDoesAttackPatches.cs" />
     <Compile Include="Patches\TribeHutSequencePatches.cs" />
     <Compile Include="Patches\UnitTargetSystemPatches.cs" />
     <Compile Include="Scriptables\CardScripts\DischargeScript.cs" />
@@ -576,6 +578,7 @@
     <Compile Include="StatusEffectImplementations\StatusEffectApplyXWhenUnitIsKilledMultipleTimes.cs" />
     <Compile Include="StatusEffectImplementations\StatusEffectApplyXWhenYAppliedToNotStatus.cs" />
     <Compile Include="StatusEffectImplementations\StatusEffectApplyXInstantChance.cs" />
+    <Compile Include="StatusEffectImplementations\StatusEffectApplyXWhenYAppliedToOnlyAlly.cs" />
     <Compile Include="StatusEffectImplementations\StatusEffectHaltX.cs" />
     <Compile Include="StatusEffectImplementations\StatusEffectInstantApplyXConditionalElseY.cs" />
     <Compile Include="StatusEffectImplementations\StatusEffectInstantChargeBell.cs" />

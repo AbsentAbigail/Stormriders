@@ -4,6 +4,7 @@ using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
+using Stormriders.StatusEffectImplementations;
 
 #endregion
 
@@ -17,11 +18,11 @@ public class WhenAllyGainsThunderGainFrenzy : IStatusBuilder
     public DataFileBuilder<StatusEffectData, StatusEffectDataBuilder> Builder()
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
-            .Create<StatusEffectApplyXWhenYAppliedToAlly>(Name)
+            .Create<StatusEffectApplyXWhenYAppliedToOnlyAlly>(Name)
             .WithText($"When an ally's {Stormriders.KeywordTag("thunder")} increases, gain <x{{a}}>{Stormriders.VanillaKeywordTag("frenzy")}")
             .WithStackable(true)
             .WithCanBeBoosted(true)
-            .SubscribeToAfterAllBuildEvent<StatusEffectApplyXWhenYAppliedToAlly>(status =>
+            .SubscribeToAfterAllBuildEvent<StatusEffectApplyXWhenYAppliedToOnlyAlly>(status =>
             {
                 status.effectToApply = Stormriders.GetStatus("MultiHit");
                 status.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;

@@ -1,13 +1,9 @@
-﻿#region
-
-using Deadpan.Enums.Engine.Components.Modding;
+﻿using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Builders.StatusEffects;
 using Stormriders.Helpers;
-
-#endregion
 
 namespace Stormriders.Builders.Upgrades;
 
@@ -23,7 +19,7 @@ public class DawnCharm : IUpgradeBuilder
             .WithType(CardUpgradeData.Type.Charm)
             .WithImage(Stormriders.GetSprite("Square_Dawn"))
             .WithTitle("Dawn Charm")
-            .WithText($"Gain \"When deployed, removed <keyword=consume> from cards in hand\"")
+            .WithText($"Gain \"When deployed, remove <keyword=consume> from cards in hand\"")
             .SubscribeToAfterAllBuildEvent(charm =>
             {
                 charm.effects = [Stormriders.SStack(WhenDeployedRemoveConsumeFromCardsInHand.Name)];

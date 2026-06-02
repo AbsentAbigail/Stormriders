@@ -2,28 +2,25 @@
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
-using Stormriders.StatusEffectImplementations;
-using WildfrostHopeMod.VFX;
 
 namespace Stormriders.Builders.StatusEffects;
 
 [UsedImplicitly]
-public class Thunder : IStatusBuilder
+public class OnCardPlayedReduceOwnEffects : IStatusBuilder
 {
     public static string Name { get; } = AccessTools.GetOutsideCaller().DeclaringType!.Name;
 
     public DataFileBuilder<StatusEffectData, StatusEffectDataBuilder> Builder()
     {
         return new StatusEffectDataBuilder(Stormriders.Instance)
-            .Create<StatusEffectThunder>(Name)
-            .WithText("Thunder {a}")
+            .Create<StatusEffectApplyXOnCardPlayed>(Name)
+            .WithText($"Decrease own effects by {{a}}")
             .WithStackable(true)
             .WithCanBeBoosted(false)
-            .SubscribeToAfterAllBuildEvent<StatusEffectThunder>(status =>
+            .SubscribeToAfterAllBuildEvent<StatusEffectApplyXOnCardPlayed>(status =>
             {
-                status.type = "thunder";
-                status.doesDamage = true;
-            })
-            .Subscribe_WithStatusIcon("thunder");
+                status.effectToApply = Stormriders.GetStatus("Reduce Effects");
+                status.applyToFlags = StatusEffectApplyX.ApplyToFlags.Self;
+            });
     }
 }

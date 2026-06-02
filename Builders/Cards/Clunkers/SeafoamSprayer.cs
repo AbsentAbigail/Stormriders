@@ -1,12 +1,8 @@
-﻿#region
-
-using Deadpan.Enums.Engine.Components.Modding;
+﻿using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Builders.StatusEffects;
-
-#endregion
 
 namespace Stormriders.Builders.Cards.Clunkers;
 
@@ -23,6 +19,8 @@ public class SeafoamSprayer : ICardBuilder
             .WithCardType("Clunker")
             .SetHealth(null)
             .SetDamage(null)
+            .SetCounter(3)
+            .WithValue(45)
             .SetSprites(
                 Stormriders.GetSprite("Seafoam_sprayer"),
                 Stormriders.GetSprite("Seafoam_sprayer_bg"))
@@ -31,7 +29,8 @@ public class SeafoamSprayer : ICardBuilder
                 card.startWithEffects =
                 [
                     Stormriders.SStack("Scrap"),
-                    Stormriders.SStack(WhenWaterdEnemyDiesApplyTheirWaterToRandomEnemyMultipleTimes.Name, 2),
+                    Stormriders.SStack(WhenWaterdEnemyDiesApplyTheirWaterToRandomEnemyMultipleTimes.Name, 3),
+                    Stormriders.SStack(OnCardPlayedReduceOwnEffects.Name),
                 ];
             });
     }

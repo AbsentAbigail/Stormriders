@@ -1,12 +1,8 @@
-﻿#region
-
-using Deadpan.Enums.Engine.Components.Modding;
+﻿using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Builders.StatusEffects;
-
-#endregion
 
 namespace Stormriders.Builders.Cards.Clunkers;
 
@@ -22,6 +18,7 @@ public class Wethead : ICardBuilder
             .WithCardType("Clunker")
             .SetHealth(null)
             .SetDamage(null)
+            .WithValue(45)
             .SetSprites(
                 Stormriders.GetSprite("Wethead"),
                 Stormriders.GetSprite("Wethead_bg"))

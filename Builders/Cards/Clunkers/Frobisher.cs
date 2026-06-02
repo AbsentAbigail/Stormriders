@@ -1,12 +1,8 @@
-﻿#region
-
-using Deadpan.Enums.Engine.Components.Modding;
+﻿using Deadpan.Enums.Engine.Components.Modding;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Stormriders.Builders.Interfaces;
 using Stormriders.Builders.StatusEffects;
-
-#endregion
 
 namespace Stormriders.Builders.Cards.Clunkers;
 
@@ -24,6 +20,7 @@ public class Frobisher : ICardBuilder
             .SetHealth(null)
             .SetDamage(null)
             .SetCounter(8)
+            .WithValue(45)
             .SetSprites(
                 Stormriders.GetSprite("Frobisher"),
                 Stormriders.GetSprite("Frobisher_bg"))
