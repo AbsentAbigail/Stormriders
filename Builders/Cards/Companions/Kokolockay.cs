@@ -58,6 +58,7 @@ public class Kokolockay : ICardBuilder
 internal class KokolockayCardImage : ScriptableCardImage
 {
     public Image Image => GetComponent<Image>();
+    bool hasPromptedForcefulRescale;
 
     // gets called when the card is created (e.g. Leaders having one consistent avatar)
     public override void AssignEvent()
@@ -67,13 +68,40 @@ internal class KokolockayCardImage : ScriptableCardImage
         Image.sprite = entity.data.mainSprite;
         // Move Kokolockay down to fit the card frame better
         transform.localPosition += new Vector3(0, -1f, 0);
+        // Prompts additional rescale as soon as possible
+        hasPromptedForcefulRescale = true;
     }
 
     public override void UpdateEvent()
+    {
+        Rescale();
+    }
+
+    // Moved in a separate method, because now we call it from 2 separate places.
+    private void Rescale()
     {
         var eatEffect = (StatusEffectWhenHitByWaterCount)entity.statusEffects.FirstOrDefault(status => status is StatusEffectWhenHitByWaterCount);
         var scale = 1 + (eatEffect?.eatCount ?? 0) * 0.1f;
 
         transform.localScale = new Vector3(scale, scale, 1f);
+    }
+
+    /// <summary>
+    /// Attempts to <see cref="Rescale"/> this card image as soon as possible,
+    /// BUT after the game manually rescales this <see cref="ScriptableCardImage"/> in <see cref="Card.UpdateData(bool)"/>.
+    /// </summary>
+    /// <remarks>
+    /// Unity's magical method.
+    /// Runs after all regular Update methods.
+    /// </remarks>
+    private void LateUpdate()
+    {
+        // Note: if you still encounter a size glitch for a few frames - let me know.
+        // It will mean that additional rescale still doesn't run quickly enough.
+        if (hasPromptedForcefulRescale)
+        {
+            hasPromptedForcefulRescale = false;
+            Rescale(); // Runs additional rescale.
+        }
     }
 }
